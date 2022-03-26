@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFreamework;
+using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,7 @@ namespace CoreDemo.Controllers
 {
     public class RegisterController : Controller
     {
-
+        WriterManager wm = new WriterManager(new EfWriterRepository());
         [HttpGet]
         public IActionResult Index()
         {
@@ -23,9 +26,12 @@ namespace CoreDemo.Controllers
 
 
         [HttpPost]
-        public IActionResult Degisecek()
+        public IActionResult Index(Writer p)
         {
-            return View();
+            p.WriterStatus = true;
+            p.WriterAbout = "Deneme Test";
+            wm.WriterAdd(p);
+            return RedirectToAction("Index","Blog");
         }
     }
 }
