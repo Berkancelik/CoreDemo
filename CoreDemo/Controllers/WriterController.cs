@@ -7,12 +7,19 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    public class LoginController : Controller
+    [Authorize]
+    public class WriterController : Controller
     {
-
-        // Aşağıdaki AllowAnonymous, sistemteki tüm kısıtlamaları burası için kaldır anlamını taşımaktadır.
-        [AllowAnonymous]
         public IActionResult Index()
+        {
+            return View();
+        }
+        public IActionResult WriterProfile()
+        {
+            return View();
+        }
+
+        public IActionResult WriterMail()
         {
             return View();
         }
