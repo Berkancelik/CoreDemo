@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,12 +27,26 @@ namespace CoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+
+            //ekleme session u
+            services.AddSession();
+
+
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder().
                     RequireAuthenticatedUser().
                     Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+
+            // Return Url ile birlikte login yapmadan sayfalar arasý geçmez ve hata da vermez
+            services.AddMvc();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>
+            {
+                x.LoginPath = "/Login/Index";
             });
 
 
@@ -56,6 +71,7 @@ namespace CoreDemo
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 
