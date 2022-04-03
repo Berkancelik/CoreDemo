@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
+    
     public class BlogController : Controller
     {
         BlogManager bm = new BlogManager(new EfBlogRepository());

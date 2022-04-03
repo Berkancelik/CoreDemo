@@ -16,6 +16,8 @@ namespace CoreDemo
 {
     public class Startup
     {
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,7 +29,6 @@ namespace CoreDemo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-
 
             //ekleme session u
             services.AddSession();
@@ -71,6 +72,9 @@ namespace CoreDemo
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            // Aþaðýdaki iki komut da auth için gereklidir.
+            app.UseAuthentication();
             app.UseSession();
 
             app.UseRouting();
