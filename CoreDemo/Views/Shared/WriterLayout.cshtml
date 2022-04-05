@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="~/writer/assets/vendors/css/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- Plugin css for this page -->
-    <!-- End plugin css for this page -->
+    <!-- End plugin css for this page --> 
     <!-- inject:css -->
     <!-- endinject -->
     <!-- Layout styles -->
@@ -23,6 +23,7 @@
     <!-- End layout styles -->
     <link rel="shortcut icon" href="~/writer/assets/images/favicon.ico" />
 </head>
+
 <body>
     <div class="container-scroller">
         <!-- partial:../../partials/_navbar.html -->
@@ -112,7 +113,7 @@
 
             <div class="main-panel">
                 <div class="content-wrapper">
-
+                    @RenderBody()
                 </div>
                 @await Html.PartialAsync("~/Views/Writer/WriterFooterPartial.cshtml")
 
@@ -128,4 +129,3 @@
 
 </body>
 </html>
-@RenderBody()
