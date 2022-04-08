@@ -47,7 +47,7 @@ namespace BusinessLayer.Concrete
 
         public void TUpdate(Writer t)
         {
-            throw new NotImplementedException();
+             _writerDal.Update(t);
         }
 
         
