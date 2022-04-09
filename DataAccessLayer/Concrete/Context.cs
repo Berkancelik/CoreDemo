@@ -15,6 +15,11 @@ namespace DataAccessLayer.Concrete
             optionsBuilder.UseSqlServer("server=DESKTOP-IITT7DV;database=CoreBlogDb; integrated security=true;");
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity
+        }
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
