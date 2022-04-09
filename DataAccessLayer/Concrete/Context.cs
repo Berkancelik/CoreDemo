@@ -18,6 +18,7 @@ namespace DataAccessLayer.Concrete
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity
+
         }
 
         public DbSet<About> Abouts { get; set; }
