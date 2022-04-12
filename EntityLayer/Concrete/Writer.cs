@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
@@ -18,6 +19,9 @@ namespace EntityLayer.Concrete
         public string WriterPassword { get; set; }
         public bool WriterStatus { get; set; }
         public List<Blog> Blogs { get; set; }
+
+        public virtual ICollection<Message2> WriterSender { get; set; }
+        public virtual ICollection<Message2> WriterReceiver { get; set; }
 
     }
 }
