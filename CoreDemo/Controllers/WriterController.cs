@@ -11,16 +11,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using CoreDemo.Models;
 using System.IO;
+using DataAccessLayer.Concrete;
 
 namespace CoreDemo.Controllers
 {
-    [Authorize]
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
+        [Authorize]
+
         public IActionResult Index()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.v = usermail;
+            Context c = new Context();
+            var writername = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterName).FirstOrDefault();
+            ViewBag.v2 = writername;
             return View();
+
         }
         public IActionResult WriterProfile()
         {
