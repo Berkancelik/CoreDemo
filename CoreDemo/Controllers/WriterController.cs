@@ -19,15 +19,15 @@ namespace CoreDemo.Controllers
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
         [Authorize]
-
+        // solid burada ezilmektedir.
         public IActionResult Index()
         {
             var usermail = User.Identity.Name;
             ViewBag.v = usermail;
             Context c = new Context();
-            var writername = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterName).FirstOrDefault();
-            ViewBag.v2 = writername;
-            return View();
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = wm.GetWriterByID(writerID);
+            return View(values);
 
         }
         public IActionResult WriterProfile()
@@ -58,15 +58,17 @@ namespace CoreDemo.Controllers
             return PartialView();
         }   
         
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult WriterEditProfile ()
         {
-            var writervalues = wm.TGetById(1);
+            Context c = new Context();
+            var usermail = User.Identity.Name;
+            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = wm.GetWriterByID(writerID);
+            var writervalues = wm.TGetById(writerID);
             return View(writervalues);
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p)
         {

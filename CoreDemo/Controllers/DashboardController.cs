@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Controllers
 {
-    [AllowAnonymous]
     public class DashboardController : Controller
     {
         public IActionResult Index()
