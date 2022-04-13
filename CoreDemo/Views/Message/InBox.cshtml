@@ -25,7 +25,7 @@
             <td>@item.Subject</td>
             <td>@item.SenderUser.WriterName</td>
             <td> @(((DateTime) item.MessageDate).ToString("dd-MMMM-yyyy"))</td>
-            <td><a href="/Blog/EditBlog/@item.MessageID" class="btn btn-warning">Mesajı Aç</a></td>
+            <td><a href="/Message/MessageDetails/@item.MessageID" class="btn btn-warning">Mesajı Aç</a></td>
         </tr>
 
     }

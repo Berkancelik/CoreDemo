@@ -20,5 +20,11 @@ namespace CoreDemo.Controllers
             var values = mm.GetInboxListByWriter(id);
             return View(values);
         }
+        public IActionResult MessageDetails(int id)
+        {
+            var value = mm.TGetById(id);    
+            return View(value);
+        }
     }
+
 }
