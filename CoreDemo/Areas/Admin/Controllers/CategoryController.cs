@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿
+using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFreamework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +13,11 @@ namespace CoreDemo.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
+        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
         public IActionResult Index()
         {
-            return View();
+            var values = cm.GetList();
+            return View(values);
         }
     }
 }
