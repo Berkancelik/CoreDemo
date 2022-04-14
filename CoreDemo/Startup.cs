@@ -45,7 +45,7 @@ namespace CoreDemo
 
             // Return Url ile birlikte login yapmadan sayfalar arasý geçmez ve hata da vermez
             services.AddMvc();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
             {
                 x.LoginPath = "/Login/Index";
             });
@@ -68,7 +68,7 @@ namespace CoreDemo
             }
 
             // durum kodlarýný sayfalarýný kullan adýnda bir metod tanýmlarýz
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1","?code={0}");
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error1", "?code={0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -83,10 +83,21 @@ namespace CoreDemo
 
             app.UseEndpoints(endpoints =>
             {
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute(
+                      name: "areas",
+                      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                    );
+                });
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
         }
     }
 }
