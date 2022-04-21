@@ -11,6 +11,7 @@
 <button type="button" id="btngetbyid" class="btn btn-outline-success">Yazar Getir </button>
 <button type="button" id="btnaddwriter" class="btn btn-outline-info">Yazar Ekle </button>
 <button type="button" id="btndeletewriter" class="btn btn-outline-danger">Yazar Sil </button>
+<button type="button" id="btnupdatewriter" class="btn btn-outline-warning">Yazar Güncelle </button>
 <br />
 <br />
 <div id="writerlist">
@@ -33,6 +34,12 @@
 <div>
     <input type="text" class="form-control" id="txtid" placeholder=" Silinceke Yazar ID" />
 </div>
+
+<div>
+    <input type="text" class="form-control" id="txtid1" placeholder="Güncellenecek ID" />
+    <input type="text" class="form-control" id="txtwritername1" placeholder="Güncellenecek İsim" />
+</div>
+
 
 @section scripts{
     <script>
@@ -67,7 +74,7 @@
                     console.log(w);
 
                     let getValue = `<table class=table table-bordered> <tr> <th> Yazar ID </th>
-                            <th> Yazar Adı</th></tr>   <tr><td>${w.Id}</td> <td>${w.Name}</td></table>`;
+                                <th> Yazar Adı</th></tr>   <tr><td>${w.Id}</td> <td>${w.Name}</td></table>`;
                     $("#writerget").html(getValue);
 
                 }
@@ -97,6 +104,20 @@
                 dataType: "json",
                 success: function (func) {
                     alert("Yazar Silme İşlemi Başarılı Bir Şekilde Gerçekleşti");
+                }
+            });
+        });
+        $("#btnupdatewriter").click(function () {
+            let writer = {
+                Id: $("#txtid1").val(),
+                Name: $("#txtwritername1").val()
+            };
+            $.ajax({
+                type: "post",
+                url: "/Admin/Writer/UpdateWriter/",
+                data: writer,
+                success: function (func) {
+                    alert("Güncelleme işlemi başarılı bir şekilde tamamlandı");
                 }
             });
         });
