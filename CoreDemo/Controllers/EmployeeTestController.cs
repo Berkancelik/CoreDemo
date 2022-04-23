@@ -71,6 +71,8 @@ namespace CoreDemo.Controllers
             return View(p);
         }
 
+        // Error Delete
+
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             var httpClient = new HttpClient();
