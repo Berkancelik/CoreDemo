@@ -43,6 +43,46 @@ namespace CoreDemo.Controllers
 
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditEmployee(int id)
+        {
+            var httpClient = new HttpClient();
+            var resonseMessage =await httpClient.GetAsync("https://localhost:44357/api/Default/"+id);
+            if (resonseMessage.IsSuccessStatusCode)
+            {
+                var jsonEmployee = await resonseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<Class1>(jsonEmployee);
+                return View(values);
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditEmployee(Class1 p)
+        {
+            var httpClient = new HttpClient();
+            var jsonEmployee = JsonConvert.SerializeObject(p);
+            var content = new StringContent(jsonEmployee,Encoding.UTF8,"application/json");
+            var responseMeessage = await httpClient.PutAsync("https://localhost:44357/api/Default",content);
+            if (responseMeessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(p);
+        }
+
+        public async Task<IActionResult> DeleteEmployee(int id)
+        {
+            var httpClient = new HttpClient();
+            var responseMeessage = await httpClient.DeleteAsync("https://localhost:44357/api/Default" + id);
+            if (responseMeessage.IsSuccessStatusCode)
+            {
+
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
 
     }
 
