@@ -1,0 +1,17 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace CoreDemo.Models
+{
+    public class UserUpdateViewModel
+    {
+        //PascalCase burada ezilmiştir...
+        public string namesurname { get; set; }
+        public string username { get; set; }
+        public string mail { get; set; }
+        public string imgageurl { get; set; }
+        public string password { get; set; }
+    }
+}

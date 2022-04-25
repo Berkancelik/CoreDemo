@@ -22,9 +22,12 @@ namespace CoreDemo.Controllers
 
         private readonly UserManager<AppUser> _userManager;
 
-        public WriterController(UserManager<AppUser> userManager)
+        private readonly SignInManager<AppUser> _signInManager;
+
+        public WriterController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         [Authorize]
@@ -68,23 +71,30 @@ namespace CoreDemo.Controllers
         }
 
         [HttpGet]
-        public IActionResult WriterEditProfile()
+        public async Task<IActionResult> WriterEditProfile()
         {
-            Context c = new Context();
-            var username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            UserManager userManager = new UserManager(new EfUserRepository());
-            var id = c.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
-            var values = userManager.TGetById(id);
-            return View(values);
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+
+            UserUpdateViewModel model = new UserUpdateViewModel();
+            model.mail = values.Email;
+            model.username = values.UserName;
+            model.namesurname = values.NameSurname;
+            model.imgageurl = values.ImageUrl;
+
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult WriterEditProfile(Writer p)
-        {
-            wm.TUpdate(p);
-            return RedirectToAction("Index", "Blog");
+        public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
+        { 
+            var values = await _userManager.FindByNameAsync(User.Identity.Name);
+            values.NameSurname = model.namesurname;
+            values.ImageUrl = model.imgageurl;
+            values.Email = model.mail;
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values,model.password);
 
+            var result = await _userManager.UpdateAsync(values);
+            return RedirectToAction("Index", "Dashboard");
         }
 
         [AllowAnonymous]
@@ -118,6 +128,12 @@ namespace CoreDemo.Controllers
             w.WriterAbout = p.WriterAbout;
             wm.TAdd(w);
             return RedirectToAction("Index", "Dashboard");
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Index");
         }
     }
 }
