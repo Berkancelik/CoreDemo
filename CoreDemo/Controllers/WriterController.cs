@@ -12,12 +12,21 @@ using System.Threading.Tasks;
 using CoreDemo.Models;
 using System.IO;
 using DataAccessLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
 
 namespace CoreDemo.Controllers
 {
     public class WriterController : Controller
     {
         WriterManager wm = new WriterManager(new EfWriterRepository());
+
+        private readonly UserManager<AppUser> _userManager;
+
+        public WriterController(UserManager<AppUser> userManager)
+        {
+            _userManager = userManager;
+        }
+
         [Authorize]
         // solid burada ezilmektedir.
         public IActionResult Index()
@@ -56,41 +65,26 @@ namespace CoreDemo.Controllers
         public PartialViewResult WriterFooterPartial()
         {
             return PartialView();
-        }   
-        
+        }
+
         [HttpGet]
-        public IActionResult WriterEditProfile ()
+        public IActionResult WriterEditProfile()
         {
             Context c = new Context();
             var username = User.Identity.Name;
             var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            var values = wm.GetWriterByID(writerID);
-            var writervalues = wm.TGetById(writerID);
-            return View(writervalues);
+            UserManager userManager = new UserManager(new EfUserRepository());
+            var id = c.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
+            var values = userManager.TGetById(id);
+            return View(values);
         }
 
         [HttpPost]
         public IActionResult WriterEditProfile(Writer p)
         {
-            WriterValidator wv = new WriterValidator();
-            ValidationResult results = wv.Validate(p);
-            if (results.IsValid)
-            {
-                p.WriterStatus = true;
-                p.WriterAbout = "Deneme Test";
-                wm.TUpdate(p);
-                return RedirectToAction("Index", "Blog");
-            }
-            else
-            {
-                foreach (var item in results.Errors)
-                {
-                    ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
-                }
-            }
-            return View();
+            wm.TUpdate(p);
+            return RedirectToAction("Index", "Blog");
+
         }
 
         [AllowAnonymous]
