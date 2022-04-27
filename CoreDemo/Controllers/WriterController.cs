@@ -133,7 +133,7 @@ namespace CoreDemo.Controllers
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Login", "Index");
+            return RedirectToAction("Index", "Login");
         }
     }
 }
