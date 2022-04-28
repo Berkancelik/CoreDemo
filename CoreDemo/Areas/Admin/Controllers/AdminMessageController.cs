@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    [Area("Admin")]
+    public class AdminMessageController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Inbox()
         {
             return View();
         }
