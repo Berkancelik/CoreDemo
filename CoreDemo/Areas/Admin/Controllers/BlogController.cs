@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
+
     public class BlogController : Controller
     {
         public IActionResult ExportStaticExcelBlogList()
