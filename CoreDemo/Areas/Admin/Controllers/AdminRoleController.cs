@@ -109,9 +109,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
             var roles = _roleManager.Roles.ToList();
-
             TempData["Userid"] = user.Id;
-
             var userRoles = await _userManager.GetRolesAsync(user);
             List<RoleAssignViewModel> model = new List<RoleAssignViewModel>();
             foreach (var item in roles)
