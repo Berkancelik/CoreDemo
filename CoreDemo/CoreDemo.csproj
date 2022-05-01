@@ -9,6 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\403forbidden\dist\index.html" />
+    <None Include="wwwroot\403forbidden\dist\style.css" />
+    <None Include="wwwroot\403forbidden\license.txt" />
+    <None Include="wwwroot\403forbidden\README.markdown" />
+    <None Include="wwwroot\403forbidden\src\index.html" />
+    <None Include="wwwroot\403forbidden\src\style.css" />
     <None Include="wwwroot\writer\.DS_Store" />
     <None Include="wwwroot\writer\.gitignore" />
     <None Include="wwwroot\writer\assets\css\style.css" />
