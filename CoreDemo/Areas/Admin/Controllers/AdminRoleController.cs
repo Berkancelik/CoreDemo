@@ -72,7 +72,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task <IActionResult> UpdateRole(RoleUpdateViewModel model)
+        public async Task<IActionResult> UpdateRole(RoleUpdateViewModel model)
         {
             var values = _roleManager.Roles.Where(x => x.Id == model.Id).FirstOrDefault();
             values.Name = model.Name;
@@ -81,11 +81,11 @@ namespace CoreDemo.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
-       
+
             return View(model);
         }
 
-        public async Task<IActionResult> DeleteRole (int id)
+        public async Task<IActionResult> DeleteRole(int id)
         {
             var values = _roleManager.Roles.FirstOrDefault(x => x.Id == id);
             var result = await _roleManager.DeleteAsync(values);
@@ -109,7 +109,7 @@ namespace CoreDemo.Areas.Admin.Controllers
         {
             var user = _userManager.Users.FirstOrDefault(x => x.Id == id);
             var roles = _roleManager.Roles.ToList();
-            TempData["Userid"] = user.Id;
+            TempData["UserId"] = user.Id;
             var userRoles = await _userManager.GetRolesAsync(user);
             List<RoleAssignViewModel> model = new List<RoleAssignViewModel>();
             foreach (var item in roles)
@@ -124,5 +124,25 @@ namespace CoreDemo.Areas.Admin.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> AssignRole(List<RoleAssignViewModel> model)
+        {
+            var userid = (int)TempData["UserId"];
+            var user = _userManager.Users.FirstOrDefault(x => x.Id == userid);
+            foreach (var item in model)
+            {
+                if (item.Exists)
+                {
+                    await _userManager.AddToRoleAsync(user, item.Name);
+                }
+                else
+                {
+                    await _userManager.RemoveFromRoleAsync(user, item.Name);
+                }
+            }
+            return RedirectToAction("UserRoleList");
+        }
     }
 }
+
