@@ -61,6 +61,8 @@ namespace CoreDemo.Controllers
         [AllowAnonymous]
         public PartialViewResult WriterNavbarPartial()
         {
+            var usermail = User.Identity.Name;
+            ViewBag.v1 = usermail;
             return PartialView();
         }
 

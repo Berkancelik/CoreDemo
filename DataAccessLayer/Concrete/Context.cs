@@ -14,6 +14,8 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // server alanına canlıdan alınan ip adresi kopyalanır.. ip||MSSQLSERVER2019 database : DB ismi 
+            // integrated security kaldırılı, user == admindb, ve password=*******
             optionsBuilder.UseSqlServer("server=DESKTOP-IITT7DV;database=CoreBlogDb; integrated security=true;");
         }
 

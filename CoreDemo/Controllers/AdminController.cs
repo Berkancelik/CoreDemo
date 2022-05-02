@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
+using DataAccessLayer.EntityFreamework;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +11,10 @@ namespace CoreDemo.Controllers
 {
     public class AdminController : Controller
     {
+        WriterManager wm = new WriterManager(new EfWriterRepository());
+
+        UserManager um = new UserManager(new EfUserRepository());
+
         public IActionResult Index()
         {
             return View();
@@ -15,6 +22,12 @@ namespace CoreDemo.Controllers
 
         public IActionResult AdminNavbarPartial()
         {
+
+            var username = User.Identity.Name;
+            ViewBag.v1 = username;
+
+
+
             return PartialView();
         }
     }
