@@ -34,10 +34,10 @@ namespace CoreDemo.Controllers
         // solid burada ezilmektedir.
         public IActionResult Index()
         {
-            var usermail = User.Identity.Name;
-            ViewBag.v = usermail;
+            var userMail = User.Identity.Name;
+            ViewBag.v = userMail;
             Context c = new Context();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             var values = wm.GetWriterByID(writerID);
             return View(values);
 
@@ -78,10 +78,10 @@ namespace CoreDemo.Controllers
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
 
             UserUpdateViewModel model = new UserUpdateViewModel();
-            model.mail = values.Email;
-            model.username = values.UserName;
-            model.namesurname = values.NameSurname;
-            model.imgageurl = values.ImageUrl;
+            model.Mail = values.Email;
+            model.UserName = values.UserName;
+            model.NameSurname = values.NameSurname;
+            model.ImageUrl = values.ImageUrl;
 
             return View(model);
         }
@@ -90,10 +90,10 @@ namespace CoreDemo.Controllers
         public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
         { 
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
-            values.NameSurname = model.namesurname;
-            values.ImageUrl = model.imgageurl;
-            values.Email = model.mail;
-            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values,model.password);
+            values.NameSurname = model.NameSurname;
+            values.ImageUrl = model.ImageUrl;
+            values.Email = model.Mail;
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values,model.Password);
 
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
@@ -116,11 +116,11 @@ namespace CoreDemo.Controllers
             {
                 var extension = Path.GetExtension(p.WriterImage.FileName);
                 // Guid benzersiz tanımlamalar için kullanılmaktadır
-                var newimagename = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newimagename);
+                var newImageName = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/WriterImageFiles/", newImageName);
                 var stream = new FileStream(location, FileMode.Create);
                 p.WriterImage.CopyTo(stream);
-                w.WriterImage = newimagename;
+                w.WriterImage = newImageName;
 
             }
             w.WriterMail = p.WriterMail;

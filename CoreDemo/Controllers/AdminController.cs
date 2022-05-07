@@ -23,8 +23,8 @@ namespace CoreDemo.Controllers
         public IActionResult AdminNavbarPartial()
         {
 
-            var username = User.Identity.Name;
-            ViewBag.v1 = username;
+            var userName = User.Identity.Name;
+            ViewBag.v1 = userName;
 
 
 

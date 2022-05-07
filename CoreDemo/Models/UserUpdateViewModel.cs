@@ -8,10 +8,10 @@ namespace CoreDemo.Models
     public class UserUpdateViewModel
     {
         //PascalCase burada ezilmiştir...
-        public string namesurname { get; set; }
-        public string username { get; set; }
-        public string mail { get; set; }
-        public string imgageurl { get; set; }
-        public string password { get; set; }
+        public string NameSurname { get; set; }
+        public string UserName { get; set; }
+        public string Mail { get; set; }
+        public string ImageUrl { get; set; }
+        public string Password { get; set; }
     }
 }

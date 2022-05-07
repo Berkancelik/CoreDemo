@@ -18,18 +18,20 @@ namespace CoreDemo.Controllers
         public IActionResult InBox()
         {
             // SOLID burada ezilmiştir.
-            var username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+
             var values = mm.GetInboxListByWriter(writerID);
             return View(values);
         }
 
         public IActionResult SendBox()
         {
-            var username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+
             var values = mm.GetSendboxListByWriter(writerID);
             return View(values);
 
@@ -50,9 +52,10 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult SendMessage(Message2 p)
         {
-            var username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var userName = User.Identity.Name;
+            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+
 
             p.SenderID = writerID;
             p.ReceiverID = 5;
