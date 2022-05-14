@@ -21,7 +21,7 @@ namespace DataAccessLayer.EntityFreamework
             }
         }
 
-      
+
         public List<Message2> GetInboxWithMessageByWriter(int id)
         {
             using (var c = new Context())
@@ -30,6 +30,6 @@ namespace DataAccessLayer.EntityFreamework
             }
         }
 
-   
+
     }
 }

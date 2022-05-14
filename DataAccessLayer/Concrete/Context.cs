@@ -9,13 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    // IdentityDbContext => Context sınıfından miras alır ve Context sınıfına ait bütün özellikleri kullanabilir.
-    public class Context : IdentityDbContext<AppUser, AppRole,int>
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // server alanına canlıdan alınan ip adresi kopyalanır.. ip||MSSQLSERVER2019 database : DB ismi 
-            // integrated security kaldırılı, user == admindb, ve password=*******
             optionsBuilder.UseSqlServer("server=DESKTOP-IITT7DV;database=CoreBlogDb; integrated security=true;");
         }
 
@@ -37,7 +34,7 @@ namespace DataAccessLayer.Concrete
 
         }
 
-        
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
