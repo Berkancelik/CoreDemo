@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    interface INotificationService:IGenericService<Notification>
+    interface INotificationService : IGenericService<Notification>
     {
     }
 }

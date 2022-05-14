@@ -18,7 +18,7 @@ namespace BusinessLayer.Concrete
             _newsLetterDal = newsLetterDal;
         }
 
-    
+
         public List<NewsLetter> GetList()
         {
             throw new NotImplementedException();

@@ -18,7 +18,7 @@ namespace BusinessLayer.Concrete
             _contactDal = contactDal;
         }
 
-   
+
 
         public List<Contact> GetList()
         {

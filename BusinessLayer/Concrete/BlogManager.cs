@@ -11,12 +11,12 @@ namespace BusinessLayer.Concrete
 {
     public class BlogManager : IBlogService
     {
-        IBlogDal  _blogDal;
+        IBlogDal _blogDal;
 
         public BlogManager(IBlogDal blogDal)
         {
             _blogDal = blogDal;
-        } 
+        }
 
         public List<Blog> GetBlogListWithCategory()
         {

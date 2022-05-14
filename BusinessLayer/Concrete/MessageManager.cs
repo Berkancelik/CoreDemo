@@ -26,7 +26,7 @@ namespace BusinessLayer.Concrete
         public List<Message> GetInboxListByWriter(string p)
         {
             return _messageDal.GetListAll(x => x.Receiver == p);
-                // yukarıda sessiondan gelen değere göre eşitleme sağlanmaktadır.
+            // yukarıda sessiondan gelen değere göre eşitleme sağlanmaktadır.
         }
 
         public void TAdd(Message t)

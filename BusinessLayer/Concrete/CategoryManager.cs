@@ -23,7 +23,7 @@ namespace BusinessLayer.Concrete
         {
             _categoryDal = categoryDal;
         }
-      
+
 
         public Category TGetById(int id)
         {
@@ -37,7 +37,7 @@ namespace BusinessLayer.Concrete
 
         public void TAdd(Category t)
         {
-             _categoryDal.Insert(t);
+            _categoryDal.Insert(t);
 
         }
 

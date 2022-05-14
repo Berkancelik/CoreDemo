@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-    public interface ICommentService:IGenericService<Comment>
-    {      
-    
-  
+    public interface ICommentService : IGenericService<Comment>
+    {
+
+
         List<Comment> GetCommentWithComment();
 
         List<Comment> GetList(int id);

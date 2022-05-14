@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.ValidationRules
 {
-    public class BlogValidator: AbstractValidator<Blog>
+    public class BlogValidator : AbstractValidator<Blog>
     {
         public BlogValidator()
         {

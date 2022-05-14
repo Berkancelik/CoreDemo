@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.ValidationRules
 {
-    public class WriterValidator: AbstractValidator<Writer>
+    public class WriterValidator : AbstractValidator<Writer>
     {
         public WriterValidator()
         {
-            
+
             RuleFor(x => x.WriterName).NotEmpty().WithMessage("Yazar adı soyadı kısmı boş geçilmez");
             RuleFor(x => x.WriterMail).NotEmpty().WithMessage("Mail adresi boş geçilmez");
             RuleFor(x => x.WriterPassword).NotEmpty().WithMessage("Şifre boş geçilmez");
