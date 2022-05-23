@@ -13,8 +13,8 @@ namespace CoreDemo.ViewComponents.Writer
 {
     public class WriterAboutOnDashboard : ViewComponent
     {
-        WriterManager writermanager = new WriterManager(new EfWriterRepository());
-        Context c = new Context();
+        WriterManager writerManager = new WriterManager(new EfWriterRepository());
+        Context context = new Context();
 
 
 
@@ -22,9 +22,9 @@ namespace CoreDemo.ViewComponents.Writer
         {
             var username = User.Identity.Name;
             ViewBag.v = username = User.Identity.Name;
-            var usermail = c.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
-            var values = writermanager.GetWriterByID(writerID);
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var writerID = context.Writers.Where(x => x.WriterMail == usermail).Select(y => y.WriterID).FirstOrDefault();
+            var values = writerManager.GetWriterByID(writerID);
             return View(values);
         }
     }

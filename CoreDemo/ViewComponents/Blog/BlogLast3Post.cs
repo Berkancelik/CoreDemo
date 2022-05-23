@@ -10,11 +10,11 @@ namespace CoreDemo.ViewComponents.Blog
 {
     public class BlogLast3Post:ViewComponent
     {
-        BlogManager bm = new BlogManager(new EfBlogRepository());
+        BlogManager blogManager = new BlogManager(new EfBlogRepository());
 
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetLast3Blog();
+            var values = blogManager.GetLast3Blog();
             return View(values);
         }
     }

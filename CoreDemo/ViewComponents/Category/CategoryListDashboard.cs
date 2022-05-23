@@ -11,12 +11,12 @@ namespace CoreDemo.ViewComponents.Category
     public class CategoryListDashboard : ViewComponent
     {
 
-        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
 
 
         public IViewComponentResult Invoke()
         {
-            var values = cm.GetList();
+            var values = categoryManager.GetList();
             return View(values);
         }
     }

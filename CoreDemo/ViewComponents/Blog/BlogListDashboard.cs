@@ -10,11 +10,11 @@ namespace CoreDemo.ViewComponents.Blog
 {
     public class BlogListDashboard:ViewComponent
     {
-        BlogManager bm = new BlogManager(new EfBlogRepository());
+        BlogManager blogManager = new BlogManager(new EfBlogRepository());
 
         public IViewComponentResult Invoke()
         {
-            var values = bm.GetBlogListWithCategory();
+            var values = blogManager.GetBlogListWithCategory();
             return View(values);
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CoreDemo.ViewComponents
 {
-    public class CommentList:ViewComponent
+    public class CommentList : ViewComponent
     {
         public IViewComponentResult Invoke()
         {
