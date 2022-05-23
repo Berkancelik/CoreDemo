@@ -16,14 +16,14 @@ namespace CoreDemo.Controllers
 {
     public class BlogController : Controller
     {
-        BlogManager bm = new BlogManager(new EfBlogRepository());
-        CategoryManager cm = new CategoryManager(new EfCategoryRepository());
-        Context c = new Context();
+        BlogManager blogManager = new BlogManager(new EfBlogRepository());
+        CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
+        Context context = new Context();
 
         [AllowAnonymous]
         public IActionResult Index()
         {
-            var values = bm.GetBlogListWithCategory();
+            var values = blogManager.GetBlogListWithCategory();
             return View(values);
         }
 
@@ -31,16 +31,16 @@ namespace CoreDemo.Controllers
         public IActionResult BlogReadAll(int id)
         {
             ViewBag.i = id;
-            var values = bm.GetBlogByID(id);
+            var values = blogManager.GetBlogByID(id);
             return View(values);
         }
 
         public IActionResult BlogListByWriter()
         {
             var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = bm.GetListWithCategoryByWriterBm(writerID);
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var values = blogManager.GetListWithCategoryByWriterBm(writerID);
             return View(values);
 
         }
@@ -48,7 +48,7 @@ namespace CoreDemo.Controllers
         [HttpGet]
         public IActionResult BlogAdd()
         {
-            List<SelectListItem> categoryValues = (from x in cm.GetList()
+            List<SelectListItem> categoryValues = (from x in categoryManager.GetList()
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
@@ -66,8 +66,8 @@ namespace CoreDemo.Controllers
         {
 
             var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
 
             BlogValidator bv = new BlogValidator();
             ValidationResult results = bv.Validate(p);
@@ -90,16 +90,16 @@ namespace CoreDemo.Controllers
 
         public IActionResult DeleteBlog(int id)
         {
-            var blogvalue = bm.TGetById(id);
-            bm.TDelete(blogvalue);
+            var blogvalue = categoryManager.TGetById(id);
+            categoryManager.TDelete(blogvalue);
             return RedirectToAction("BlogListByWriter");
         }
 
         [HttpGet]
         public IActionResult EditBlog(int id)
         {
-            var blogvalue = bm.TGetById(id);
-            List<SelectListItem> categoryvalues = (from x in cm.GetList()
+            var blogvalue = blogManager.TGetById(id);
+            List<SelectListItem> categoryvalues = (from x in categoryManager.GetList()
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
@@ -113,12 +113,12 @@ namespace CoreDemo.Controllers
         public IActionResult EditBlog(Blog p)
         {
             var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
 
             p.WriterID = writerID;
             p.BlogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            bm.TUpdate(p);
+            blogManager.TUpdate(p);
             return RedirectToAction("BlogListByWriter");
         }
     }

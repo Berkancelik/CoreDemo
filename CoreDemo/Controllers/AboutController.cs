@@ -12,10 +12,10 @@ namespace CoreDemo.Controllers
     [AllowAnonymous]
     public class AboutController : Controller
     {
-        AboutManager abm = new AboutManager(new EfAboutRepository());
+        AboutManager aboutManager = new AboutManager(new EfAboutRepository());
         public IActionResult Index()
         {
-            var values = abm.GetList();
+            var values = aboutManager.GetList();
 
             return View(values);
         }

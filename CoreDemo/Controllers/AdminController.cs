@@ -11,9 +11,8 @@ namespace CoreDemo.Controllers
 {
     public class AdminController : Controller
     {
-        WriterManager wm = new WriterManager(new EfWriterRepository());
+        WriterManager writerManager = new WriterManager(new EfWriterRepository());
 
-        UserManager um = new UserManager(new EfUserRepository());
 
         public IActionResult Index()
         {
