@@ -13,7 +13,7 @@ namespace CoreDemo.Controllers
     [AllowAnonymous]
     public class CommentController : Controller
     {
-        CommentManager cm = new CommentManager(new EfCommentRepository());
+        CommentManager commentManager = new CommentManager(new EfCommentRepository());
         public IActionResult Index()
         {
             return View();
@@ -29,12 +29,12 @@ namespace CoreDemo.Controllers
             p.CommentDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.CommentStatus = true;
             p.BlogID = 2;
-            cm.CommentAdd(p);
+            commentManager.CommentAdd(p);
             return PartialView();
         } 
         public PartialViewResult CommentListByBlog(int id)
         {
-            var values = cm.GetList(id);
+            var values = commentManager.GetList(id);
             return PartialView(values);
         }
     }

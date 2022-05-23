@@ -13,7 +13,7 @@ namespace CoreDemo.Controllers
 {
     public class RegisterController : Controller
     {
-        WriterManager wm = new WriterManager(new EfWriterRepository());
+        WriterManager writerManager = new WriterManager(new EfWriterRepository());
         [HttpGet]
         public IActionResult Index()
         {
@@ -29,13 +29,13 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult Index(Writer p)
         {
-            WriterValidator wv = new WriterValidator();
-            ValidationResult results = wv.Validate(p);
+            WriterValidator writerValidaor = new WriterValidator();
+            ValidationResult results = writerValidaor.Validate(p);
             if (results.IsValid)
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Deneme Test";
-                wm.TAdd(p);
+                writerManager.TAdd(p);
                 return RedirectToAction("Index", "Blog");
             }
             else

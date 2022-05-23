@@ -12,14 +12,14 @@ namespace CoreDemo.Controllers
     {
         public IActionResult Index()
         {
-            Context c = new Context();
+            Context context = new Context();
             var userName = User.Identity.Name;
-            var userMail = c.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
-            var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
+            var userMail = context.Users.Where(x => x.UserName == userName).Select(y => y.Email).FirstOrDefault();
+            var writerID = context.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
 
-            ViewBag.v1 = c.Blogs.Count().ToString();
-            ViewBag.v2 = c.Blogs.Where(x => x.WriterID == writerID).Count().ToString();
-            ViewBag.v3 = c.Categories.Count().ToString();
+            ViewBag.v1 = context.Blogs.Count().ToString();
+            ViewBag.v2 = context.Blogs.Where(x => x.WriterID == writerID).Count().ToString();
+            ViewBag.v3 = context.Categories.Count().ToString();
             return View();
         }
     }

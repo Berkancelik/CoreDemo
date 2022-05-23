@@ -18,7 +18,7 @@ namespace CoreDemo.Controllers
 {
     public class WriterController : Controller
     {
-        WriterManager wm = new WriterManager(new EfWriterRepository());
+        WriterManager writerManager = new WriterManager(new EfWriterRepository());
 
         private readonly UserManager<AppUser> _userManager;
 
@@ -38,7 +38,7 @@ namespace CoreDemo.Controllers
             ViewBag.v = userMail;
             Context c = new Context();
             var writerID = c.Writers.Where(x => x.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
-            var values = wm.GetWriterByID(writerID);
+            var values = writerManager.GetWriterByID(writerID);
             return View(values);
 
         }
@@ -128,7 +128,7 @@ namespace CoreDemo.Controllers
             w.WriterPassword = p.WriterPassword;
             w.WriterStatus = true;
             w.WriterAbout = p.WriterAbout;
-            wm.TAdd(w);
+            writerManager.TAdd(w);
             return RedirectToAction("Index", "Dashboard");
         }
 
