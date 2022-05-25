@@ -223,7 +223,7 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.BlogRayting", b =>
                 {
-                    b.Property<int>("BlogRaytingID")
+                    b.Property<int>("BlogRaytingId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -237,14 +237,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("BlogTotalScore")
                         .HasColumnType("int");
 
-                    b.HasKey("BlogRaytingID");
+                    b.HasKey("BlogRaytingId");
 
                     b.ToTable("BlogRaytings");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
                 {
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("CategoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -258,7 +258,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("CategoryStatus")
                         .HasColumnType("bit");
 
-                    b.HasKey("CategoryId");
+                    b.HasKey("CategoryID");
 
                     b.ToTable("Categories");
                 });

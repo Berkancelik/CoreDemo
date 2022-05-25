@@ -22,16 +22,16 @@ namespace CoreDemo.Areas.Admin.Controllers
 
             list.Add(new CategoryClass
             {
-                categoryname = "Teknoloji",
-                categorycount = 10
+                CategoryName = "Teknoloji",
+                CategoryCount = 10
             });  list.Add(new CategoryClass
             {
-                categoryname = "Spor",
-                categorycount = 14
+                CategoryName = "Spor",
+                CategoryCount = 14
             });  list.Add(new CategoryClass
             {
-                categoryname = "Yazılım",
-                categorycount = 5
+                CategoryName = "Yazılım",
+                CategoryCount = 5
             });
             return Json(new { jsonlist = list });
         }

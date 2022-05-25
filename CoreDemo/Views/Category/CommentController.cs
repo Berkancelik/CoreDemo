@@ -10,7 +10,7 @@ namespace CoreDemo.Views.Category
 {
     public class CommentController : Controller
     {
-        CommentManager cm = new CommentManager(new EfCommentRepository());
+        CommentManager commentManager = new CommentManager(new EfCommentRepository());
         public IActionResult Index()
         {
             return View();
@@ -23,7 +23,7 @@ namespace CoreDemo.Views.Category
 
         public PartialViewResult CommentListByBlog(int id)
         {
-            var values = cm.GetList(id);
+            var values = commentManager.GetList(id);
             return PartialView(values);
         }
     }

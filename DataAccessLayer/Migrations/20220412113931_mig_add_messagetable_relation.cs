@@ -8,7 +8,7 @@ namespace DataAccessLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "NotificationId",
+                name: "NotificationID",
                 table: "Notifications",
                 newName: "NotificationID");
 
@@ -61,7 +61,7 @@ namespace DataAccessLayer.Migrations
             migrationBuilder.RenameColumn(
                 name: "NotificationID",
                 table: "Notifications",
-                newName: "NotificationId");
+                newName: "NotificationID");
         }
     }
 }

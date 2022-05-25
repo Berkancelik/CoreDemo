@@ -52,7 +52,7 @@ namespace CoreDemo.Controllers
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
-                                                       Value = x.CategoryId.ToString()
+                                                       Value = x.CategoryID.ToString()
                                                    }).ToList();
             ViewBag.cv = categoryValues;
 
@@ -103,7 +103,7 @@ namespace CoreDemo.Controllers
                                                    select new SelectListItem
                                                    {
                                                        Text = x.CategoryName,
-                                                       Value = x.CategoryId.ToString()
+                                                       Value = x.CategoryID.ToString()
                                                    }).ToList();
             ViewBag.cv = categoryvalues;
             return View(blogvalue);
