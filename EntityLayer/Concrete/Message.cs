@@ -9,6 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Message
     {
+        [Key]
         public int MessageID { get; set; }
         public string Sender { get; set; }
         public string Receiver { get; set; }

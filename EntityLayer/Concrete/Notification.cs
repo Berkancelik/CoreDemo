@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class Notification
     {
-        
+        [
         public int NotificationID { get; set; }
         public string NotificationType { get; set; }
         public string NotificationTypeSymbol { get; set; }
