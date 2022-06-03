@@ -9,7 +9,6 @@ namespace EntityLayer.Concrete
 {
     public class NewsLetter
     {
-        [Key]
         public int MailID { get; set; }
         public String Mail { get; set; }
         public bool MailStatus { get; set; }
