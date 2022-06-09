@@ -1,10 +1,6 @@
-﻿using BusinessLayer.Concrete;
-using DataAccessLayer.Concrete;
+﻿using DataAccessLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CoreDemo.Areas.Admin.Views.Shared.Components.Statistic1
 {

@@ -3,9 +3,7 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BusinessLayer.Concrete
 {
@@ -26,7 +24,6 @@ namespace BusinessLayer.Concrete
         public List<Message> GetInboxListByWriter(string p)
         {
             return _messageDal.GetListAll(x => x.Receiver == p);
-            // yukarıda sessiondan gelen değere göre eşitleme sağlanmaktadır.
         }
 
         public void TAdd(Message t)
