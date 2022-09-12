@@ -25,7 +25,8 @@ namespace CoreDemo.Controllers
         }
 
         [HttpPost]
-        public async Task  <IActionResult> Index(UserSignUpViewModel p) {
+        public async Task<IActionResult> Index(UserSignUpViewModel p)
+        {
             if (ModelState.IsValid)
             {
                 AppUser user = new AppUser()

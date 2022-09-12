@@ -17,11 +17,7 @@ namespace CoreDemo.Controllers
             return View();
         }
 
-        // Ekleme işlemi yapılırken, httpget ve httppost attributelerinin tanımlandığı metotların isimleri aynı olmak zorundadır.
-        // Http Get --> SAyfa yüklenince
-        // HttpPost --> Sayfada buton tetiklenince
 
-        // HttpGet Attribute komutu sayfada ketegorize ya da benzeri işlemler kullanılırken, sayfa yüklendiği anda listelenmesi istenene niteliklerde kullanılabilir.
 
         [HttpPost]
         public IActionResult Index(Writer p)
