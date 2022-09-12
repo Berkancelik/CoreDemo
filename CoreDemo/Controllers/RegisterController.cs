@@ -19,6 +19,7 @@ namespace CoreDemo.Controllers
 
 
 
+
         [HttpPost]
         public IActionResult Index(Writer p)
         {
