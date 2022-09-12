@@ -85,12 +85,12 @@ namespace CoreDemo.Controllers
 
         [HttpPost]
         public async Task<IActionResult> WriterEditProfile(UserUpdateViewModel model)
-        { 
+        {
             var values = await _userManager.FindByNameAsync(User.Identity.Name);
             values.NameSurname = model.NameSurname;
             values.ImageUrl = model.ImageUrl;
             values.Email = model.Mail;
-            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values,model.Password);
+            values.PasswordHash = _userManager.PasswordHasher.HashPassword(values, model.Password);
 
             var result = await _userManager.UpdateAsync(values);
             return RedirectToAction("Index", "Dashboard");
