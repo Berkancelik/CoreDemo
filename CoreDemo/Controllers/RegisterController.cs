@@ -24,6 +24,7 @@ namespace CoreDemo.Controllers
 
         // HttpGet Attribute komutu sayfada ketegorize ya da benzeri işlemler kullanılırken, sayfa yüklendiği anda listelenmesi istenene niteliklerde kullanılabilir.
 
+
         [HttpPost]
         public IActionResult Index(Writer p)
         {
