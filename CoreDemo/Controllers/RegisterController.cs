@@ -17,6 +17,7 @@ namespace CoreDemo.Controllers
             return View();
         }
 
+
         // Ekleme işlemi yapılırken, httpget ve httppost attributelerinin tanımlandığı metotların isimleri aynı olmak zorundadır.
         // Http Get --> SAyfa yüklenince
         // HttpPost --> Sayfada buton tetiklenince
